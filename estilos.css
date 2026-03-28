@@ -92,35 +92,58 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 32px;
+  padding: 14px 28px;
   border-radius: var(--radius-pill);
   font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   gap: 8px;
 }
 
 .btn-primary {
-  background-color: var(--brand-color);
+  background: linear-gradient(135deg, var(--brand-color), #bc456e);
   color: white;
+  box-shadow: 0 4px 15px rgba(157, 57, 91, 0.25);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #bc456e, var(--brand-color));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
 }
 
 .btn-primary:hover {
-  background-color: var(--brand-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(157, 57, 91, 0.4);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
 }
 
 .btn-outline {
-  background-color: transparent;
-  border-color: var(--bg-white);
-  color: var(--bg-white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-outline:hover {
-  background-color: var(--bg-white);
+  background: white;
   color: var(--text-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
 }
 
 /* NAVBAR */
@@ -558,6 +581,17 @@ img {
 .gallery-item img-comparison-slider {
   width: 100%;
   height: 600px; /* Fixed height for consistency */
+  --default-handle-width: 36px;
+  --default-handle-color: white;
+  --default-handle-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --divider-width: 2px;
+  --divider-color: white;
+}
+.gallery-item img-comparison-slider::part(handle) {
+  border-radius: 50%;
+  background-color: var(--brand-color);
+  box-shadow: 0 4px 15px rgba(157, 57, 91, 0.4);
+  border: 3px solid white;
 }
 
 .gallery-item img-comparison-slider img {
@@ -822,6 +856,60 @@ img {
 
 .whatsapp-float:hover {
   transform: scale(1.1);
+}
+
+/* Premium Luxury Button (Dribbble Style) */
+.btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(157, 57, 91, 0.05);
+  color: var(--brand-color);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.925rem;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(157, 57, 91, 0.15);
+  margin-top: 15px;
+}
+.btn-luxury span {
+  position: relative;
+  z-index: 2;
+}
+.btn-luxury svg {
+  position: relative;
+  z-index: 2;
+  width: 16px; height: 16px;
+  transition: transform 0.4s ease;
+}
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, rgba(157,57,91,0), rgba(157,57,91,0.1), rgba(157,57,91,0));
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+.btn-luxury:hover {
+  background-color: var(--brand-color);
+  color: white;
+  box-shadow: 0 8px 25px rgba(157, 57, 91, 0.3);
+  transform: translateY(-3px);
+  border-color: var(--brand-color);
+}
+.btn-luxury:hover::before {
+  left: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
+}
+.btn-luxury:hover svg {
+  transform: translateX(4px);
 }
 
 /* RESPONSIVE ADDONS */
